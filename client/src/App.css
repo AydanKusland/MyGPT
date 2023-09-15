@@ -11,17 +11,17 @@ html {
 	font-size: 62.5%;
 }
 
+h1 {
+	font-size: 3.3rem;
+	font-weight: 600;
+	padding: 10rem 0;
+}
+
 .topLevelContainer {
 	display: flex;
 	justify-content: stretch;
 	width: 100vw;
 	height: 100vh;
-}
-
-h1 {
-	font-size: 3.3rem;
-	font-weight: 600;
-	padding: 10rem 0;
 }
 
 .side-bar {
@@ -74,10 +74,8 @@ input:focus {
 #submit {
 	position: absolute;
 	right: 1rem;
-	/* transform: translateY(50%); */
 	font-size: 3.2rem;
 	color: #532222;
-	/* height: 5rem; */
 	background-color: transparent;
 	border: none;
 	cursor: pointer;

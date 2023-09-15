@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { gpt_3_5_Request } from './customFetch'
+import { customFetch } from './customFetch'
 
 export default function App() {
 	const [chats, setChats] = useState([])
@@ -10,10 +10,16 @@ export default function App() {
 	const handleSubmit = async e => {
 		e.preventDefault()
 		setIsLoading(true)
-		const response = await gpt_3_5_Request(query)
+
+		try {
+			const { data: response } = await customFetch.post('', { message: query })
+			setChatResponse(response)
+			setChats(prev => [...prev, { query, response }])
+		} catch (error) {
+			console.log(error)
+			// add a toast or error class!
+		}
 		setIsLoading(false)
-		setChatResponse(response)
-		setChats(prev => [...prev, { query, response }])
 		setQuery('')
 	}
 
