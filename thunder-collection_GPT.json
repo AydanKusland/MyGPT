@@ -1,0 +1,47 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "GPT",
+    "dateExported": "2023-09-21T11:57:11.794Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "70608196-47f7-4288-8aee-71ce04be4452",
+            "colId": "6f680300-ce23-4c47-bd8d-d67f2f1775e9",
+            "containerId": "",
+            "name": "Single message",
+            "url": "http://localhost:8000/completions",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-21T06:03:30.268Z",
+            "modified": "2023-09-21T11:56:27.523Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n\t\t\t\t\"message\": [{ \"role\": \"user\", \"content\": \"5 most used phrases with chinese word 便利\" }]\r\n\t\t\t}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "40582542-3ea6-49b7-88f9-de30fb13f5a5",
+            "colId": "6f680300-ce23-4c47-bd8d-d67f2f1775e9",
+            "containerId": "",
+            "name": "Chat message",
+            "url": "http://localhost:8000/completions",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-09-21T06:03:48.495Z",
+            "modified": "2023-09-21T06:17:35.678Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n \"message\": [\n   { \"role\": \"user\", \"content\": \"Что обозначает имя Рома?\" }, \n   { \"role\": \"assistant\", \"content\": \"Это обзначает вечно тупящий\" }, \n   { \"role\": \"user\", \"content\": \"Почему ты так говоришь? Это обидно!\" }\n ]\n  \n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

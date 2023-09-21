@@ -1,0 +1,3 @@
+export const START_NEW_CHAT = 'START_NEW_CHAT'
+export const CONTINUE_OLD_CHAT = 'CONTINUE_OLD_CHAT'
+export const SET_IS_LOADING = 'SET_IS_LOADING'

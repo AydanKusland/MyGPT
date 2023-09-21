@@ -12,7 +12,9 @@ export default function App() {
 		setIsLoading(true)
 
 		try {
-			const { data: response } = await customFetch.post('', { message: query })
+			const { data: response } = await customFetch.post('', {
+				message: [{ role: 'user', content: query }]
+			})
 			setChatResponse(response)
 			setChats(prev => [...prev, { query, response }])
 		} catch (error) {
