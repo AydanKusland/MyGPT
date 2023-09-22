@@ -2,8 +2,11 @@ import { useState } from 'react'
 import { customFetch } from './customFetch'
 
 export default function App() {
+	// all chats
 	const [chats, setChats] = useState([])
+	// current chat query
 	const [query, setQuery] = useState('')
+	// current GPT response
 	const [chatResponse, setChatResponse] = useState(null)
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -12,11 +15,18 @@ export default function App() {
 		setIsLoading(true)
 
 		try {
-			const { data: response } = await customFetch.post('', {
-				message: [{ role: 'user', content: query }]
-			})
-			setChatResponse(response)
-			setChats(prev => [...prev, { query, response }])
+			// Sending query to server
+			const message = { role: 'user', content: query }
+			const { data: response } = await customFetch.post('', [message])
+			// response is {"role": "assistant", "content": ""}
+			// making legit chat object:
+			let currentChat = {
+				id: new Date().getTime(),
+				messages: [message[0], response]
+			}
+			console.log(currentChat)
+			setChatResponse(response.content)
+			// setChats(prev => [...prev, []])
 		} catch (error) {
 			console.log(error)
 			// add a toast or error class!

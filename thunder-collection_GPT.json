@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "GPT",
-    "dateExported": "2023-09-21T11:57:11.794Z",
+    "dateExported": "2023-09-22T10:28:47.831Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -14,12 +14,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-09-21T06:03:30.268Z",
-            "modified": "2023-09-21T11:56:27.523Z",
+            "modified": "2023-09-22T09:49:31.866Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\r\n\t\t\t\t\"message\": [{ \"role\": \"user\", \"content\": \"5 most used phrases with chinese word 便利\" }]\r\n\t\t\t}",
+                "raw": "[{ \"role\": \"user\", \"content\": \"5 most used phrases using word 促使\" }]",
                 "form": []
             },
             "tests": []
