@@ -19,17 +19,19 @@ export const customFetch = axios.create({
 export const gptRequest = async (req, res) => {
 	try {
 		console.log(req.body)
+		const { model, messages } = req.body
 		const { data } = await customFetch.post('', {
-			// model: 'gpt-3.5-turbo',
-			model: 'gpt-4',
-			messages: req.body,
-			max_tokens: 500
+			model,
+			messages,
+			max_tokens: 1000
+			// temperature: 1
 		})
 		console.log(data)
 		const responseMessage = data.choices[0].message
 		console.log(responseMessage)
 		res.status(200).json(responseMessage)
 	} catch (error) {
+		console.log(error.response)
 		res.status(400).json(error)
 	}
 }

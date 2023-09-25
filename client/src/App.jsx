@@ -6,26 +6,30 @@ export default function App() {
 	const [chats, setChats] = useState([])
 	// current chat query
 	const [query, setQuery] = useState('')
-	// current GPT response
-	const [chatResponse, setChatResponse] = useState(null)
+	// current chat
+	const [currentChat, setCurrentChat] = useState([])
+
 	const [isLoading, setIsLoading] = useState(false)
+	// choose GPT version
+	const [gptVersion, setGptVersion] = useState('gpt-3.5-turbo')
 
 	const handleSubmit = async e => {
 		e.preventDefault()
 		setIsLoading(true)
 
 		try {
+			const newMessage = [...currentChat, { role: 'user', content: query }]
 			// Sending query to server
-			const message = { role: 'user', content: query }
-			const { data: response } = await customFetch.post('', [message])
+			const { data: response } = await customFetch.post('', {
+				model: gptVersion,
+				messages: newMessage
+			})
+			setCurrentChat(prev => [
+				...prev,
+				{ role: 'user', content: query },
+				response
+			])
 			// response is {"role": "assistant", "content": ""}
-			// making legit chat object:
-			let currentChat = {
-				id: new Date().getTime(),
-				messages: [message[0], response]
-			}
-			console.log(currentChat)
-			setChatResponse(response.content)
 			// setChats(prev => [...prev, []])
 		} catch (error) {
 			console.log(error)
@@ -36,13 +40,16 @@ export default function App() {
 	}
 
 	const handleHistory = id => {
-		setChatResponse(chats[id].response)
+		console.log(id)
 	}
 
 	return (
 		<div className='topLevelContainer'>
 			<aside className='side-bar'>
-				<button className='newChatButton' onClick={() => setChatResponse('')}>
+				<button
+					className='newChatButton'
+					onClick={() => console.log('new chat')}
+				>
 					New Chat
 				</button>
 				<div className='history'>
@@ -52,13 +59,22 @@ export default function App() {
 						</p>
 					))}
 				</div>
-				<nav>
+				<footer>
 					<p>Made For S3 Company</p>
-				</nav>
+				</footer>
 			</aside>
 			<main className='main'>
 				<h1>MyGPT</h1>
-				<p id='output'>{isLoading ? 'LOADING...' : chatResponse}</p>
+				<div id='output'>
+					{isLoading
+						? 'LOADING...'
+						: currentChat.map((message, index) => (
+								<p key={index}>
+									<span>{message.role}</span> &nbsp;
+									{message.content}
+								</p>
+						  ))}
+				</div>
 				<form className='input-container' onSubmit={handleSubmit}>
 					<input
 						type='text'
@@ -71,7 +87,15 @@ export default function App() {
 						{'\u27a2'}
 					</button>
 				</form>
-				<p className='info'>GPT-3.5 Turbo.</p>
+				<select
+					name='gptVersion'
+					id='gptVersion'
+					onChange={e => setGptVersion(e.target.value)}
+					value={gptVersion}
+				>
+					<option value='gpt-3.5-turbo'>GPT - 3.5 Turbo</option>
+					<option value='gpt-4'>GPT - 4</option>
+				</select>
 			</main>
 		</div>
 	)

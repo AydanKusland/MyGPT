@@ -90,7 +90,7 @@ input:focus {
 	cursor: pointer;
 }
 
-nav {
+footer {
 	padding: 1rem;
 	margin: 1rem;
 	border-top: solid 0.5px rgba(255, 255, 255, 0.5);
@@ -117,6 +117,17 @@ nav {
 	font-size: 1.5rem;
 	margin-bottom: 3rem;
 	overflow: auto;
-	text-align: center;
+	text-align: justify;
 	padding: 1rem 2rem;
+	line-height: 1.5;
+}
+
+#gptVersion {
+	background-color: transparent;
+	border: transparent;
+	padding: 1rem;
+	margin: 1rem;
+}
+#gptVersion option {
+	background-color: #202123;
 }
