@@ -18,7 +18,6 @@ export const customFetch = axios.create({
 
 export const gptRequest = async (req, res) => {
 	try {
-		console.log(req.body)
 		const { model, messages } = req.body
 		const { data } = await customFetch.post('', {
 			model,
@@ -26,10 +25,10 @@ export const gptRequest = async (req, res) => {
 			max_tokens: 1000
 			// temperature: 1
 		})
-		console.log(data)
 		const responseMessage = data.choices[0].message
-		console.log(responseMessage)
-		res.status(200).json(responseMessage)
+		// Create ID if first message in the chat
+		const id = messages.length === 1 ? Date.now() : null
+		res.status(200).json({ responseMessage, id })
 	} catch (error) {
 		console.log(error.response)
 		res.status(400).json(error)

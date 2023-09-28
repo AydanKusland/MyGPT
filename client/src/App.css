@@ -6,15 +6,9 @@
 }
 
 html {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-family: Calibri, 'Trebuchet MS', sans-serif;
 	background-color: #343541;
 	font-size: 62.5%;
-}
-
-h1 {
-	font-size: 3.3rem;
-	font-weight: 600;
-	padding: 10rem 0;
 }
 
 .topLevelContainer {
@@ -39,7 +33,15 @@ h1 {
 	flex-direction: column;
 	align-items: center;
 	flex: 5 20rem;
-	justify-content: space-between;
+	justify-content: end;
+}
+
+/* MyGPT header */
+.main h1 {
+	justify-self: start;
+	font-size: 3.3rem;
+	font-weight: 600;
+	padding: 5rem 0;
 }
 
 .info {
@@ -53,6 +55,7 @@ h1 {
 	width: 100%;
 	max-width: 65rem;
 	position: relative;
+	justify-self: end;
 }
 
 input {
@@ -114,12 +117,33 @@ footer {
 }
 
 #output {
+	width: 100%;
 	font-size: 1.5rem;
 	margin-bottom: 3rem;
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	text-align: justify;
-	padding: 1rem 2rem;
+	padding: 1rem 3rem;
 	line-height: 1.5;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+/* CHAT */
+.wholeMessage {
+	display: flex;
+	gap: 2rem;
+	background-color: #3b2121;
+	padding: 1rem;
+	align-items: center;
+	border-radius: 6px;
+}
+
+.role {
+	flex-basis: 8rem;
+}
+
+.response {
 }
 
 #gptVersion {
@@ -130,4 +154,18 @@ footer {
 }
 #gptVersion option {
 	background-color: #202123;
+}
+/* Scrollbar */
+div::-webkit-scrollbar {
+	width: 11px; /* width of the entire scrollbar */
+}
+
+div::-webkit-scrollbar-track {
+	background: #202123; /* color of the tracking area */
+	border-radius: 20px;
+}
+
+div::-webkit-scrollbar-thumb {
+	background-color: rgba(100, 100, 147, 0.678); /* color of the scroll thumb */
+	border-radius: 20px; /* roundness of the scroll thumb */
 }
