@@ -16,7 +16,7 @@ export const ContextProvider = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(false)
 
 	// choose GPT version
-	const [gptVersion, setGptVersion] = useState('gpt-3.5-turbo')
+	const [gptVersion, setGptVersion] = useState('gpt-3.5-turbo-1106')
 
 	const handleSubmit = async e => {
 		e.preventDefault()
