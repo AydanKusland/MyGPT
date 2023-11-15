@@ -22,12 +22,13 @@ export const gptRequest = async (req, res) => {
 		const { data } = await customFetch.post('', {
 			model,
 			messages,
-			max_tokens: 1000
+			max_tokens: 2000
 			// temperature: 1
 		})
 		const responseMessage = data.choices[0].message
+		const id = data.id
+		console.log(data.usage)
 		// Create ID if first message in the chat
-		const id = messages.length === 1 ? Date.now() : null
 		res.status(200).json({ responseMessage, id })
 	} catch (error) {
 		console.log(error.response)

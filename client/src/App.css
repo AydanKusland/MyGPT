@@ -18,67 +18,99 @@ html {
 	height: 100vh;
 }
 
+/* left side of the App */
 .side-bar {
 	background-color: #202123;
-	width: 24rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	flex: 1 15rem;
-	height: 100vh;
 }
 
+/* right side of the App */
 .main {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	flex: 5 20rem;
-	justify-content: end;
+	justify-content: space-between;
 }
 
 /* MyGPT header */
 .main h1 {
 	justify-self: start;
-	font-size: 3.3rem;
+	font-size: 5rem;
 	font-weight: 600;
-	padding: 5rem 0;
+	padding: 2rem 0 0 0;
 }
 
-.info {
-	color: rgba(255, 255, 255, 0.8);
-	font-size: 1.3rem;
-	padding: 0 0 1.7rem 0;
+/* CHAT */
+.chat {
+	display: flex;
+	flex-direction: column;
+	max-height: 78vh;
+	margin-bottom: 2rem;
+	padding: 0rem 2.2rem;
+	font-size: 1.85rem;
+	line-height: 1.5;
+	overflow-y: auto;
+	gap: 1.2rem;
+}
+
+.wholeMessage {
+	display: flex;
+	align-items: center;
+	gap: 2.5rem;
+	background-color: rgb(72, 40, 40);
+	padding: 1rem 2rem;
+	border-radius: 6px;
+}
+
+.role {
+	flex-basis: 7rem;
+	flex-shrink: 0;
+	text-transform: capitalize;
 	text-align: center;
+}
+
+/* input + chat version select */
+.main-bottom-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .input-container {
 	width: 100%;
-	max-width: 65rem;
+	max-width: 60vw;
 	position: relative;
-	justify-self: end;
 }
 
-input {
+textarea {
 	border: none;
 	background-color: rgba(255, 255, 255, 0.5);
 	width: 100%;
 	font-size: 2rem;
 	padding: 1.1rem;
-	border-radius: 5px;
+	border-radius: 7px;
 	box-shadow: rgba(0, 0, 0, 0.05) 0 54px 55px, rgba(0, 0, 0, 0.05) 0 -12px 30px,
 		rgba(0, 0, 0, 0.05) 0 4px 6px, rgba(0, 0, 0, 0.05) 0 12px 3px,
 		rgba(0, 0, 0, 0.09) 0 -3px 5px;
+	resize: none;
 }
 
-input:focus {
+textarea:focus {
 	outline: none;
 }
 
+/* Submit Arrow Button */
 #submit {
 	position: absolute;
-	right: 1rem;
-	font-size: 3.2rem;
-	color: #532222;
+	top: 0.55rem;
+	right: -6rem;
+	font-size: 4.2rem;
+	color: #b4c556;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
@@ -91,8 +123,10 @@ input:focus {
 	padding: 1rem;
 	margin: 1rem;
 	cursor: pointer;
+	font-size: 1.5rem;
 }
 
+/* Made for */
 footer {
 	padding: 1rem;
 	margin: 1rem;
@@ -116,36 +150,6 @@ footer {
 	text-transform: capitalize;
 }
 
-#output {
-	width: 100%;
-	font-size: 1.5rem;
-	margin-bottom: 3rem;
-	overflow-x: hidden;
-	overflow-y: auto;
-	text-align: justify;
-	padding: 1rem 3rem;
-	line-height: 1.5;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-}
-/* CHAT */
-.wholeMessage {
-	display: flex;
-	gap: 2rem;
-	background-color: #3b2121;
-	padding: 1rem;
-	align-items: center;
-	border-radius: 6px;
-}
-
-.role {
-	flex-basis: 8rem;
-}
-
-.response {
-}
-
 #gptVersion {
 	background-color: transparent;
 	border: transparent;
@@ -156,16 +160,19 @@ footer {
 	background-color: #202123;
 }
 /* Scrollbar */
-div::-webkit-scrollbar {
-	width: 11px; /* width of the entire scrollbar */
+div::-webkit-scrollbar,
+textarea::-webkit-scrollbar {
+	width: 1rem; /* width of the entire scrollbar */
 }
 
-div::-webkit-scrollbar-track {
+div::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track {
 	background: #202123; /* color of the tracking area */
-	border-radius: 20px;
+	border-radius: 10px;
 }
 
-div::-webkit-scrollbar-thumb {
+div::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb {
 	background-color: rgba(100, 100, 147, 0.678); /* color of the scroll thumb */
-	border-radius: 20px; /* roundness of the scroll thumb */
+	border-radius: 10px; /* roundness of the scroll thumb */
 }

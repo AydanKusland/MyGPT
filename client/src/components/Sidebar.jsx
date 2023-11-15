@@ -1,10 +1,10 @@
 import { useGlobalContext } from '../context'
 
 export default function Sidebar() {
-	const { chats } = useGlobalContext()
+	const { chats, setCurrentChat } = useGlobalContext()
 	return (
 		<aside className='side-bar'>
-			<button className='newChatButton' onClick={() => console.log('new chat')}>
+			<button className='newChatButton' onClick={() => setCurrentChat([])}>
 				New Chat
 			</button>
 			<div className='history'>
@@ -15,7 +15,7 @@ export default function Sidebar() {
 				))}
 			</div>
 			<footer>
-				<p>Made For S3 Company</p>
+				<p>Made For ME!</p>
 			</footer>
 		</aside>
 	)
