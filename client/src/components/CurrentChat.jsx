@@ -4,7 +4,7 @@ export default function CurrentChat() {
 	const { currentChat } = useGlobalContext()
 	return (
 		<div className='chat'>
-			{currentChat.map((message, index) => (
+			{currentChat.messages.map((message, index) => (
 				<div className='wholeMessage' key={index}>
 					<p className='role'>{message.role}:</p>
 					<div className='response'>

@@ -31,8 +31,9 @@ export const gptRequest = async (req, res) => {
 		// Create ID if first message in the chat
 		res.status(200).json({ responseMessage, id })
 	} catch (error) {
-		console.log(error.response)
-		res.status(400).json(error)
+		const status = error.response?.status || 333
+		console.log(error.response || error)
+		res.status(status).json(error)
 	}
 }
 app.post('/completions', gptRequest)

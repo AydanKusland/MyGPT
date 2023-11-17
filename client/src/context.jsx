@@ -7,11 +7,9 @@ export const ContextProvider = ({ children }) => {
 	// all chats
 	const [chats, setChats] = useState([])
 	// current chat query
-	const [query, setQuery] = useState(
-		'4 most used phrases using chinese word 枚'
-	)
+	const [query, setQuery] = useState('4 most used phrases with chinese word ')
 	// current chat
-	const [currentChat, setCurrentChat] = useState([])
+	const [currentChat, setCurrentChat] = useState({ id: '', messages: [] })
 
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -23,7 +21,10 @@ export const ContextProvider = ({ children }) => {
 		setIsLoading(true)
 
 		try {
-			const messages = [...currentChat, { role: 'user', content: query }]
+			const messages = [
+				...currentChat.messages,
+				{ role: 'user', content: query }
+			]
 			// Sending query to server
 			const {
 				data: { responseMessage, id }
@@ -31,12 +32,11 @@ export const ContextProvider = ({ children }) => {
 				model: gptVersion,
 				messages
 			})
-			console.log(id)
-			setCurrentChat(prev => [
-				...prev,
-				{ role: 'user', content: query },
-				responseMessage
-			])
+
+			setCurrentChat(prev => ({
+				id: prev.id || id,
+				messages: [...messages, responseMessage]
+			}))
 			// setChats(prev => [...prev, currentChat])
 		} catch (error) {
 			console.log(error)
