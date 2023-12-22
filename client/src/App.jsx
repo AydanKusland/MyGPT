@@ -1,11 +1,16 @@
-import ChatContainer from './components/ChatContainer'
-import Sidebar from './components/Sidebar'
+import { Sidebar, ChatContainer } from './components'
+import styled from 'styled-components'
 
 export default function App() {
 	return (
-		<div className='topLevelContainer'>
+		<TopContainer>
 			<Sidebar />
 			<ChatContainer />
-		</div>
+		</TopContainer>
 	)
 }
+
+const TopContainer = styled.div`
+	display: flex;
+	height: 100vh;
+`

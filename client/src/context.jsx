@@ -1,15 +1,22 @@
 import { createContext, useContext, useState } from 'react'
-import { customFetch } from './customFetch'
+import axios from 'axios'
+import { clearedChat } from './utils'
 
 const GlobalContext = createContext()
 
+const loadFromCookies = () => {
+	const chatsInStorage = localStorage.getItem('chats')
+	if (chatsInStorage) return JSON.parse(chatsInStorage)
+	return []
+}
+
 export const ContextProvider = ({ children }) => {
 	// all chats
-	const [chats, setChats] = useState([])
+	const [chats, setChats] = useState(loadFromCookies)
 	// current chat query
-	const [query, setQuery] = useState('4 most used phrases with chinese word ')
+	const [query, setQuery] = useState('4 examples with ')
 	// current chat
-	const [currentChat, setCurrentChat] = useState({ id: '', messages: [] })
+	const [currentChat, setCurrentChat] = useState(clearedChat)
 
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -20,28 +27,40 @@ export const ContextProvider = ({ children }) => {
 		e.preventDefault()
 		setIsLoading(true)
 
+		// Making new message array
+		const messages = [...currentChat.messages, { role: 'user', content: query }]
+
 		try {
-			const messages = [
-				...currentChat.messages,
-				{ role: 'user', content: query }
-			]
 			// Sending query to server
 			const {
 				data: { responseMessage, id }
-			} = await customFetch.post('', {
+			} = await axios.post('https://gpt-server-40zn.onrender.com/completions', {
 				model: gptVersion,
 				messages
 			})
 
-			setCurrentChat(prev => ({
-				id: prev.id || id,
+			// Construct and update chat
+			const updatedChat = {
+				id: currentChat.id || id,
+				title:
+					currentChat.title || `${responseMessage.content.substring(0, 40)}...`,
 				messages: [...messages, responseMessage]
-			}))
-			// setChats(prev => [...prev, currentChat])
+			}
+			setCurrentChat(updatedChat)
+
+			// Construct and update chats
+			const newChats = [
+				updatedChat,
+				...chats.filter(item => item.id !== updatedChat.id)
+			]
+			setChats(newChats)
+
+			// Update local storage
+			localStorage.setItem('chats', JSON.stringify(newChats))
 		} catch (error) {
 			console.log(error)
-			// add a toast or error class!
 		}
+
 		setIsLoading(false)
 		setQuery('')
 	}

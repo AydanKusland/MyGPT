@@ -1,164 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+:root {
+	--primary-text: #fff;
+	--primary-background: #343541;
+	--secondary-background: #202123;
+	--tertiary-background: rgb(80, 40, 40);
+}
+
 * {
 	margin: 0;
-	padding: 0;
 	box-sizing: border-box;
-	color: #fff;
+	color: var(--primary-text);
 }
 
 html {
-	font-family: Calibri, 'Trebuchet MS', sans-serif;
-	background-color: #343541;
 	font-size: 62.5%;
 }
 
-.topLevelContainer {
-	display: flex;
-	justify-content: stretch;
-	width: 100vw;
-	height: 100vh;
+body {
+	font-family: 'Lato', 'Calibri', 'Trebuchet MS', sans-serif;
+	background-color: var(--primary-background);
 }
 
-/* left side of the App */
-.side-bar {
-	background-color: #202123;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	flex: 1 15rem;
-}
-
-/* right side of the App */
-.main {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex: 5 20rem;
-	justify-content: space-between;
-}
-
-/* MyGPT header */
-.main h1 {
-	justify-self: start;
-	font-size: 5rem;
-	font-weight: 600;
-	padding: 2rem 0 0 0;
-}
-
-/* CHAT */
-/* .chat {
-	display: flex;
-	flex-direction: column;
-	max-height: 78vh;
-	margin-bottom: 2rem;
-	padding: 0rem 2.2rem;
-	font-size: 1.85rem;
-	line-height: 1.5;
-	overflow-y: auto;
-	gap: 1.2rem;
-} */
-
-.wholeMessage {
-	display: flex;
-	align-items: center;
-	gap: 2.5rem;
-	background-color: rgb(72, 40, 40);
-	padding: 1rem 2rem;
-	border-radius: 6px;
-}
-
-.role {
-	flex-basis: 7rem;
-	flex-shrink: 0;
-	text-transform: capitalize;
-	text-align: center;
-}
-
-/* input + chat version select */
-.main-bottom-container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.input-container {
-	width: 100%;
-	max-width: 60vw;
-	position: relative;
-}
-
-textarea {
-	border: none;
-	background-color: rgba(255, 255, 255, 0.5);
-	width: 100%;
-	font-size: 2rem;
-	padding: 1.1rem;
-	border-radius: 7px;
-	box-shadow: rgba(0, 0, 0, 0.05) 0 54px 55px, rgba(0, 0, 0, 0.05) 0 -12px 30px,
-		rgba(0, 0, 0, 0.05) 0 4px 6px, rgba(0, 0, 0, 0.05) 0 12px 3px,
-		rgba(0, 0, 0, 0.09) 0 -3px 5px;
-	resize: none;
-}
-
-textarea:focus {
-	outline: none;
-}
-
-/* Submit Arrow Button */
-#submit {
-	position: absolute;
-	top: 0.55rem;
-	right: -6rem;
-	font-size: 4.2rem;
-	color: #b4c556;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-}
-
-.newChatButton {
-	border: solid 0.5px rgba(255, 255, 255, 0.5);
-	background-color: transparent;
-	border-radius: 5px;
-	padding: 1rem;
-	margin: 1rem;
-	cursor: pointer;
-	font-size: 1.5rem;
-}
-
-/* Made for */
-footer {
-	padding: 1rem;
-	margin: 1rem;
-	border-top: solid 0.5px rgba(255, 255, 255, 0.5);
-	text-align: center;
-	font-size: 1.1rem;
-}
-
-.history {
-	padding: 1rem;
-	margin: 1rem;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-}
-
-.history p {
-	cursor: pointer;
-	padding: 1rem;
-	font-size: 1.4rem;
-	text-transform: capitalize;
-}
-
-#gptVersion {
-	background-color: transparent;
-	border: transparent;
-	padding: 1rem;
-	margin: 1rem;
-}
-#gptVersion option {
-	background-color: #202123;
-}
 /* Scrollbar */
 div::-webkit-scrollbar,
 textarea::-webkit-scrollbar {
@@ -167,7 +30,7 @@ textarea::-webkit-scrollbar {
 
 div::-webkit-scrollbar-track,
 textarea::-webkit-scrollbar-track {
-	background: #202123; /* color of the tracking area */
+	background: var(--secondary-background); /* color of the tracking area */
 	border-radius: 10px;
 }
 
