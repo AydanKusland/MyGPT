@@ -65,6 +65,13 @@ export const ContextProvider = ({ children }) => {
 		setQuery('')
 	}
 
+	const deleteChat = id => {
+		console.log('delete Chat', id)
+		const newChats = chats.filter(item => item.id !== id)
+		setChats(newChats)
+		localStorage.setItem('chats', JSON.stringify(newChats))
+	}
+
 	return (
 		<GlobalContext.Provider
 			value={{
@@ -76,7 +83,8 @@ export const ContextProvider = ({ children }) => {
 				currentChat,
 				setQuery,
 				query,
-				setCurrentChat
+				setCurrentChat,
+				deleteChat
 			}}
 		>
 			{children}

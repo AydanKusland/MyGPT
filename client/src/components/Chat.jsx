@@ -1,5 +1,7 @@
 import { useGlobalContext } from '../context'
 import styled from 'styled-components'
+import userImg from '../../public/user.png'
+import assistantImg from '../../public/assistant.png'
 
 export default function Chat() {
 	const { currentChat } = useGlobalContext()
@@ -7,7 +9,11 @@ export default function Chat() {
 		<Wrapper>
 			{currentChat.messages.map((message, index) => (
 				<div className='wholeMessage' key={index}>
-					<div className='role'>{message.role}:</div>
+					<img
+						className='role'
+						src={message.role === 'user' ? userImg : assistantImg}
+					/>
+					<span>:</span>
 					<div>
 						{message.content.split('\n').map((item, i) => (
 							<p key={i}>{item}</p>
@@ -22,24 +28,28 @@ export default function Chat() {
 const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	max-height: 78vh;
-	margin-bottom: 2rem;
-	padding: 1.5rem 2rem;
+	max-height: 83vh;
+	padding: 0rem 2rem;
+	margin-bottom: 1.5rem;
 	font-size: 1.8rem;
 	line-height: 2;
-	overflow-y: auto;
+	overflow-y: scroll;
 	gap: 1rem;
 	.wholeMessage {
 		background-color: var(--secondary-background);
 		display: flex;
+		flex-direction: row;
 		align-items: center;
-		gap: 2.2rem;
-		padding: 1.3rem 1.7rem;
+		padding: 1rem;
 		border-radius: 7px;
 	}
-	.role {
-		flex-basis: 8rem;
-		text-transform: capitalize;
-		text-align: center;
+	img {
+		width: 3.5rem;
+		display: inline;
+	}
+	span {
+		margin-left: 0.3rem;
+		margin-right: 1.5rem;
+		font-size: 2.3rem;
 	}
 `

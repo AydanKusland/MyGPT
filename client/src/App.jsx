@@ -3,14 +3,14 @@ import styled from 'styled-components'
 
 export default function App() {
 	return (
-		<TopContainer>
+		<Wrapper>
 			<Sidebar />
 			<ChatContainer />
-		</TopContainer>
+		</Wrapper>
 	)
 }
 
-const TopContainer = styled.div`
+const Wrapper = styled.main`
 	display: flex;
 	height: 100vh;
 `

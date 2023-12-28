@@ -2,6 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
 import axios from 'axios'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 const app = express()
 
@@ -36,6 +38,14 @@ export const gptRequest = async (req, res) => {
 		res.status(status).json(error)
 	}
 }
+
+// public
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+app.use(express.static(path.resolve(__dirname, './client/dist')))
+app.get('*', (req, res) => {
+	res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'))
+})
 app.post('/completions', gptRequest)
 
 const PORT = 8000

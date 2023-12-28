@@ -15,9 +15,9 @@ export default VersionSelector
 const Wrapper = styled.select`
 	background-color: transparent;
 	border: transparent;
-	padding: 1rem;
-	margin: 1rem;
+	padding: 1.5rem;
 	option {
-		background-color: var(--secondary-background);
+		background-color: var(--primary-background);
+		border: none;
 	}
 `

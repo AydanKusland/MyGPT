@@ -23,19 +23,14 @@ body {
 }
 
 /* Scrollbar */
-div::-webkit-scrollbar,
-textarea::-webkit-scrollbar {
-	width: 1rem; /* width of the entire scrollbar */
+*::-webkit-scrollbar {
+	width: 0.5rem; /* width of the entire scrollbar */
 }
-
-div::-webkit-scrollbar-track,
-textarea::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
 	background: var(--secondary-background); /* color of the tracking area */
 	border-radius: 10px;
 }
-
-div::-webkit-scrollbar-thumb,
-textarea::-webkit-scrollbar-thumb {
-	background-color: rgba(100, 100, 147, 0.678); /* color of the scroll thumb */
+*::-webkit-scrollbar-thumb {
+	background-color: rgba(100, 100, 147, 0.678); /*color of the scroll thumb*/
 	border-radius: 10px; /* roundness of the scroll thumb */
 }

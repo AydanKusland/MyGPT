@@ -5,12 +5,13 @@
 	"type": "module",
 	"scripts": {
 		"setup": "npm i && cd client && npm i",
-		"server": "cd server && nodemon server.js",
+		"server": "nodemon server.js",
 		"client": "cd client && npm run dev",
 		"dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
 		"setup-prod": "npm i && cd client && npm i && npm run build"
 	},
 	"dependencies": {
+		"@fortawesome/react-fontawesome": "^0.2.0",
 		"axios": "^1.5.0",
 		"concurrently": "^8.2.1",
 		"cors": "^2.8.5",
