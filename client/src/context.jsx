@@ -34,7 +34,7 @@ export const ContextProvider = ({ children }) => {
 			// Sending query to server
 			const {
 				data: { responseMessage, id }
-			} = await axios.post('https://gpt-server-40zn.onrender.com/completions', {
+			} = await axios.post('/completions', {
 				model: gptVersion,
 				messages
 			})
