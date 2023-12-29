@@ -1,13 +1,11 @@
 import styled from 'styled-components'
-import { useGlobalContext } from '../context'
-import { clearedChat } from '../utils'
 import History from './History'
+import NewChatButton from './NewChatButton'
 
 export default function Sidebar() {
-	const { setCurrentChat } = useGlobalContext()
 	return (
 		<Wrapper>
-			<button onClick={() => setCurrentChat(clearedChat)}>New Chat</button>
+			<NewChatButton />
 			<History />
 			<footer>
 				<p>Made For You!</p>
@@ -28,16 +26,7 @@ const Wrapper = styled.aside`
 		flex-direction: column;
 		justify-content: space-between;
 	}
-	button {
-		border: solid 0.5px rgba(255, 255, 255, 0.5);
-		background-color: transparent;
-		border-radius: 5px;
-		padding: 1rem;
-		margin: 2.6rem 1.5rem 2rem 1.5rem;
-		cursor: pointer;
-		font-size: 1.5rem;
-		font-weight: 700;
-	}
+
 	footer {
 		padding: 1.7rem;
 		border-top: solid 0.5px rgba(255, 255, 255, 0.5);

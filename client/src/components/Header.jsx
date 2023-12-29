@@ -2,17 +2,21 @@ import styled from 'styled-components'
 import { useGlobalContext } from '../context'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import NewChatButton from './NewChatButton'
 
 const Header = () => {
 	const { setModalIsOpen } = useGlobalContext()
 	return (
 		<Wrapper>
+			<FontAwesomeIcon
+				icon={faBars}
+				className='modal-open-icon'
+				onClick={() => setModalIsOpen(true)}
+			/>
 			MyGPT
-			<button>
-				<i className='icon' onClick={() => setModalIsOpen(true)}>
-					<FontAwesomeIcon icon={faBars} />
-				</i>
-			</button>
+			<div className='smallScreenOpenChatButton'>
+				<NewChatButton />
+			</div>
 		</Wrapper>
 	)
 }
@@ -25,8 +29,9 @@ const Wrapper = styled.h1`
 	@media (min-width: 768px) {
 		font-size: 5rem;
 	}
-
-	button {
+	.modal-open-icon {
+		color: white;
+		font-size: 3.5rem;
 		position: absolute;
 		left: 2rem;
 		top: 1.4rem;
@@ -38,8 +43,14 @@ const Wrapper = styled.h1`
 			display: none;
 		}
 	}
-	.icon {
-		color: white;
-		font-size: 3.5rem;
+	.smallScreenOpenChatButton {
+		position: fixed;
+		right: 1rem;
+		top: 1.7rem;
+		width: 6rem;
+		height: 6rem;
+		@media (min-width: 768px) {
+			display: none;
+		}
 	}
 `

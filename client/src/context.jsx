@@ -78,6 +78,11 @@ export const ContextProvider = ({ children }) => {
 		setModalIsOpen(false)
 	}
 
+	const openNewChat = () => {
+		setCurrentChat(clearedChat)
+		setQuery('')
+	}
+
 	return (
 		<GlobalContext.Provider
 			value={{
@@ -93,7 +98,8 @@ export const ContextProvider = ({ children }) => {
 				deleteChat,
 				setModalIsOpen,
 				modalIsOpen,
-				openChosenChat
+				openChosenChat,
+				openNewChat
 			}}
 		>
 			{children}
