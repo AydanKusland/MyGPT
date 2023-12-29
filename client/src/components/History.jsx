@@ -4,18 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 
 const History = () => {
-	const { setCurrentChat, chats, deleteChat } = useGlobalContext()
+	const { chats, deleteChat, openChosenChat } = useGlobalContext()
+
 	return (
 		<Wrapper>
 			{chats.map(chat => {
 				const { id, title } = chat
 				return (
 					<article key={id}>
-						<p
-							onClick={() => setCurrentChat(chats.find(item => item.id === id))}
-						>
-							{title}
-						</p>
+						<p onClick={() => openChosenChat(id)}>{title}</p>
 						<i className='icon' onClick={() => deleteChat(id)}>
 							<FontAwesomeIcon icon={faTrashCan} />
 						</i>
@@ -33,6 +30,10 @@ const Wrapper = styled.div`
 	flex-direction: column;
 	gap: 1.5rem;
 	overflow-y: scroll;
+	&::-webkit-scrollbar-track {
+		background: var(--secondary-background);
+		border-radius: 10px;
+	}
 	article {
 		display: flex;
 		gap: 1rem;

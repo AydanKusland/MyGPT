@@ -5,11 +5,19 @@
 	--primary-background: #343541;
 	--secondary-background: #202123;
 	--tertiary-background: rgb(80, 40, 40);
+
+	--max-width: 100rem;
 }
 
 * {
 	margin: 0;
 	box-sizing: border-box;
+}
+p,
+h1,
+button,
+input,
+select {
 	color: var(--primary-text);
 }
 
@@ -23,11 +31,12 @@ body {
 }
 
 /* Scrollbar */
+
 *::-webkit-scrollbar {
 	width: 0.5rem; /* width of the entire scrollbar */
 }
 *::-webkit-scrollbar-track {
-	background: var(--secondary-background); /* color of the tracking area */
+	background: var(--primary-background); /* color of the tracking area */
 	border-radius: 10px;
 }
 *::-webkit-scrollbar-thumb {

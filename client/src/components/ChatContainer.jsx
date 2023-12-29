@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import { useGlobalContext } from '../context'
-import { Loading, Chat, VersionSelector } from './index'
+import { Loading, Chat, VersionSelector, Header } from './index'
 import Textfield from './Textfield'
 
 export default function ChatContainer() {
 	const { isLoading } = useGlobalContext()
 	return (
 		<Wrapper>
-			<h1>MyGPT</h1>
+			<Header />
 			{isLoading ? <Loading /> : <Chat />}
 			<div>
 				<Textfield />
@@ -23,12 +23,8 @@ const Wrapper = styled.main`
 	justify-content: space-between;
 	align-items: center;
 	flex: 5 20rem;
-	h1 {
-		justify-self: start;
-		font-size: 5rem;
-		font-weight: 600;
-		padding: 2rem 0 0 0;
-	}
+	max-width: var(--max-width);
+	margin: 0 auto;
 	div {
 		width: 100%;
 		display: flex;

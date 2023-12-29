@@ -29,12 +29,19 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	max-height: 83vh;
-	padding: 0rem 2rem;
-	margin-bottom: 1.5rem;
+	margin-bottom: 1rem;
 	font-size: 1.8rem;
-	line-height: 2;
 	overflow-y: scroll;
+	line-height: 1.5;
 	gap: 1rem;
+	max-width: var(--max-width);
+	@media (min-width: 768px) {
+		padding: 1rem;
+	}
+	@media (min-width: 1024px) {
+		margin-bottom: 2.5rem;
+		line-height: 2;
+	}
 	.wholeMessage {
 		background-color: var(--secondary-background);
 		display: flex;

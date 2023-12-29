@@ -14,11 +14,12 @@ export const ContextProvider = ({ children }) => {
 	// all chats
 	const [chats, setChats] = useState(loadFromCookies)
 	// current chat query
-	const [query, setQuery] = useState('4 examples with ')
+	const [query, setQuery] = useState()
 	// current chat
 	const [currentChat, setCurrentChat] = useState(clearedChat)
 
 	const [isLoading, setIsLoading] = useState(false)
+	const [modalIsOpen, setModalIsOpen] = useState(false)
 
 	// choose GPT version
 	const [gptVersion, setGptVersion] = useState('gpt-4-1106-preview')
@@ -72,6 +73,11 @@ export const ContextProvider = ({ children }) => {
 		localStorage.setItem('chats', JSON.stringify(newChats))
 	}
 
+	const openChosenChat = id => {
+		setCurrentChat(chats.find(item => item.id === id))
+		setModalIsOpen(false)
+	}
+
 	return (
 		<GlobalContext.Provider
 			value={{
@@ -84,7 +90,10 @@ export const ContextProvider = ({ children }) => {
 				setQuery,
 				query,
 				setCurrentChat,
-				deleteChat
+				deleteChat,
+				setModalIsOpen,
+				modalIsOpen,
+				openChosenChat
 			}}
 		>
 			{children}

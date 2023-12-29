@@ -15,7 +15,10 @@ export default VersionSelector
 const Wrapper = styled.select`
 	background-color: transparent;
 	border: transparent;
-	padding: 1.5rem;
+	padding: 1.8rem;
+	font-size: 1.6rem;
+	font-weight: 700;
+
 	option {
 		background-color: var(--primary-background);
 		border: none;
