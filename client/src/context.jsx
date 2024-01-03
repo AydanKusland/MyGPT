@@ -18,7 +18,7 @@ export const ContextProvider = ({ children }) => {
 	// current chat
 	const [currentChat, setCurrentChat] = useState(clearedChat)
 
-	const [isLoading, setIsLoading] = useState(true)
+	const [isLoading, setIsLoading] = useState(false)
 	const [modalIsOpen, setModalIsOpen] = useState(false)
 
 	// choose GPT version
