@@ -1,10 +1,16 @@
 import { useGlobalContext } from '../context'
 import styled from 'styled-components'
-import userImg from '../../public/user.png'
-import assistantImg from '../../public/assistant.png'
+import userImg from '../user.png'
+import assistantImg from '../assistant.png'
+import { useEffect, useRef } from 'react'
 
 export default function Chat() {
 	const { currentChat } = useGlobalContext()
+	const lastItem = useRef(null)
+	useEffect(() => {
+		lastItem.current.scrollIntoView()
+	}, [currentChat])
+
 	return (
 		<Wrapper>
 			{currentChat.messages.map((message, index) => (
@@ -21,7 +27,7 @@ export default function Chat() {
 					</div>
 				</div>
 			))}
-			<p id='lastItem'></p>
+			<p id='lastItem' ref={lastItem}></p>
 		</Wrapper>
 	)
 }

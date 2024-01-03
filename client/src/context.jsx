@@ -1,8 +1,9 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useRef } from 'react'
 import axios from 'axios'
 import { clearedChat } from './utils'
 
 const GlobalContext = createContext()
+// const URL = NODE_ENV_
 
 const loadFromCookies = () => {
 	const chatsInStorage = localStorage.getItem('chats')
@@ -20,14 +21,13 @@ export const ContextProvider = ({ children }) => {
 
 	const [isLoading, setIsLoading] = useState(false)
 	const [modalIsOpen, setModalIsOpen] = useState(false)
+	// const lastItem = useRef(null)
 
 	// choose GPT version
 	const [gptVersion, setGptVersion] = useState('gpt-4-1106-preview')
 
-	let controller
 	const handleSubmit = async e => {
 		e.preventDefault()
-		const bottom = document.getElementById('lastItem')
 		setIsLoading(true)
 
 		// Making new message array
@@ -37,7 +37,8 @@ export const ContextProvider = ({ children }) => {
 			// Sending query to server
 			const {
 				data: { responseMessage, id }
-			} = await axios.post('/completions', {
+				// } = await axios.post('/completions', {
+			} = await axios.post('http://localhost:8000/completions', {
 				model: gptVersion,
 				messages
 			})
@@ -58,8 +59,6 @@ export const ContextProvider = ({ children }) => {
 			]
 			setChats(newChats)
 
-			bottom.scrollIntoView({ behavior: 'smooth' })
-
 			// Update local storage
 			localStorage.setItem('chats', JSON.stringify(newChats))
 			setQuery('')
@@ -71,7 +70,6 @@ export const ContextProvider = ({ children }) => {
 	}
 
 	const deleteChat = id => {
-		console.log('delete Chat', id)
 		const newChats = chats.filter(item => item.id !== id)
 		setChats(newChats)
 		localStorage.setItem('chats', JSON.stringify(newChats))
