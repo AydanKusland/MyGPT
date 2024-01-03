@@ -1,15 +1,8 @@
 import { createContext, useContext, useState, useRef } from 'react'
 import axios from 'axios'
-import { clearedChat } from './utils'
+import { clearedChat, URL, loadFromCookies } from './utils'
 
 const GlobalContext = createContext()
-// const URL = NODE_ENV_
-
-const loadFromCookies = () => {
-	const chatsInStorage = localStorage.getItem('chats')
-	if (chatsInStorage) return JSON.parse(chatsInStorage)
-	return []
-}
 
 export const ContextProvider = ({ children }) => {
 	// all chats
@@ -37,7 +30,7 @@ export const ContextProvider = ({ children }) => {
 			// Sending query to server
 			const {
 				data: { responseMessage, id }
-			} = await axios.post('/completions', {
+			} = await axios.post(URL, {
 				// } = await axios.post('http://localhost:8000/completions', {
 				model: gptVersion,
 				messages
