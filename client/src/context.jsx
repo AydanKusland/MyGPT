@@ -37,8 +37,8 @@ export const ContextProvider = ({ children }) => {
 			// Sending query to server
 			const {
 				data: { responseMessage, id }
-				// } = await axios.post('/completions', {
-			} = await axios.post('http://localhost:8000/completions', {
+			} = await axios.post('/completions', {
+				// } = await axios.post('http://localhost:8000/completions', {
 				model: gptVersion,
 				messages
 			})
