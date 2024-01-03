@@ -9,7 +9,7 @@ export default function ChatContainer() {
 		<Wrapper>
 			<Header />
 			{isLoading ? <Loading /> : <Chat />}
-			<div>
+			<div className='textField'>
 				<Textfield />
 				<VersionSelector />
 			</div>
@@ -25,7 +25,7 @@ const Wrapper = styled.main`
 	flex: 5 20rem;
 	max-width: var(--max-width);
 	margin: 0 auto;
-	div {
+	.textField {
 		width: 100%;
 		display: flex;
 		flex-direction: column;

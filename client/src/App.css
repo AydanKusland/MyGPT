@@ -13,11 +13,9 @@
 	margin: 0;
 	box-sizing: border-box;
 }
-p,
-h1,
-button,
 input,
-select {
+select,
+button {
 	color: var(--primary-text);
 }
 
@@ -28,6 +26,13 @@ html {
 body {
 	font-family: 'Lato', 'Calibri', 'Trebuchet MS', sans-serif;
 	background-color: var(--primary-background);
+	color: var(--primary-text);
+}
+
+.display-none-m {
+	@media (min-width: 768px) {
+		display: none;
+	}
 }
 
 /* Scrollbar */

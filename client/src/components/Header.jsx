@@ -8,47 +8,61 @@ const Header = () => {
 	const { setModalIsOpen } = useGlobalContext()
 	return (
 		<Wrapper>
-			<FontAwesomeIcon
-				icon={faBars}
-				className='modal-open-icon'
-				onClick={() => setModalIsOpen(true)}
-			/>
-			MyGPT
-			<div className='smallScreenOpenChatButton'>
-				<NewChatButton />
+			<div className='center'>
+				<FontAwesomeIcon
+					icon={faBars}
+					className='modal-open-icon'
+					onClick={() => setModalIsOpen(true)}
+				/>
+				<h3>MyGPT</h3>
+				<div id='smallScreenOpenChatButton'>
+					<NewChatButton />
+				</div>
 			</div>
 		</Wrapper>
 	)
 }
 export default Header
 
-const Wrapper = styled.h1`
-	font-size: 4rem;
-	font-weight: 600;
-	padding: 1rem 0 1rem 0;
-	@media (min-width: 768px) {
-		font-size: 5rem;
+const Wrapper = styled.div`
+	width: 95%;
+	.center {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 4rem;
+		font-weight: 600;
+		padding: 1rem 0 1rem 0;
+		@media (min-width: 768px) {
+			font-size: 5rem;
+		}
 	}
+	h3 {
+		margin: 0 auto;
+	}
+
 	.modal-open-icon {
 		color: white;
 		font-size: 3.5rem;
-		position: absolute;
-		left: 2rem;
-		top: 1.4rem;
 		cursor: pointer;
 		border: none;
 		background-color: var(--primary-background);
+		margin-left: 1rem;
 
 		@media (min-width: 768px) {
 			display: none;
 		}
 	}
-	.smallScreenOpenChatButton {
-		position: fixed;
-		right: 1rem;
-		top: 1.7rem;
-		width: 6rem;
-		height: 6rem;
+	#smallScreenOpenChatButton {
+		display: grid;
+		button {
+			font-size: 1.5rem;
+			width: 6rem;
+			padding: 1rem;
+			text-align: center;
+			font-weight: bold;
+		}
 		@media (min-width: 768px) {
 			display: none;
 		}

@@ -8,7 +8,7 @@ const Modal = () => {
 	const { modalIsOpen, setModalIsOpen } = useGlobalContext()
 
 	return (
-		<Wrapper modalIsOpen={modalIsOpen}>
+		<Wrapper modalIsOpen={modalIsOpen} className='display-none-m'>
 			<FontAwesomeIcon
 				className='close-icon'
 				icon={faXmark}
@@ -38,9 +38,6 @@ const Wrapper = styled.aside`
 	line-height: 1;
 	padding-top: 5rem;
 	justify-content: space-around;
-	@media (min-width: 768px) {
-		/* display: none; */
-	}
 	.close-icon {
 		position: absolute;
 		right: 1.5rem;
@@ -55,6 +52,9 @@ const Wrapper = styled.aside`
 		font-size: 3.3rem;
 		color: '#511f37';
 	}
+	/* @media (min-width: 768px) {
+		display: none;
+	} */
 `
 
 export default Modal

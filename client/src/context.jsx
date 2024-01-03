@@ -14,16 +14,17 @@ export const ContextProvider = ({ children }) => {
 	// all chats
 	const [chats, setChats] = useState(loadFromCookies)
 	// current chat query
-	const [query, setQuery] = useState()
+	const [query, setQuery] = useState('')
 	// current chat
 	const [currentChat, setCurrentChat] = useState(clearedChat)
 
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 	const [modalIsOpen, setModalIsOpen] = useState(false)
 
 	// choose GPT version
 	const [gptVersion, setGptVersion] = useState('gpt-4-1106-preview')
 
+	let controller
 	const handleSubmit = async e => {
 		e.preventDefault()
 		setIsLoading(true)
@@ -31,13 +32,15 @@ export const ContextProvider = ({ children }) => {
 		// Making new message array
 		const messages = [...currentChat.messages, { role: 'user', content: query }]
 
+		controller = new AbortController()
 		try {
 			// Sending query to server
 			const {
 				data: { responseMessage, id }
 			} = await axios.post('/completions', {
 				model: gptVersion,
-				messages
+				messages,
+				signal: controller.signal()
 			})
 
 			// Construct and update chat
@@ -58,12 +61,12 @@ export const ContextProvider = ({ children }) => {
 
 			// Update local storage
 			localStorage.setItem('chats', JSON.stringify(newChats))
+			setQuery('')
 		} catch (error) {
 			console.log(error)
 		}
 
 		setIsLoading(false)
-		setQuery('')
 	}
 
 	const deleteChat = id => {
@@ -74,27 +77,28 @@ export const ContextProvider = ({ children }) => {
 	}
 
 	const openChosenChat = id => {
+		controller.abort()
 		setCurrentChat(chats.find(item => item.id === id))
+		setIsLoading(false)
 		setModalIsOpen(false)
 	}
 
 	const openNewChat = () => {
 		setCurrentChat(clearedChat)
 		setQuery('')
+		setIsLoading(false)
 	}
 
 	return (
 		<GlobalContext.Provider
 			value={{
 				chats,
-				setChats,
 				isLoading,
 				setGptVersion,
 				handleSubmit,
 				currentChat,
 				setQuery,
 				query,
-				setCurrentChat,
 				deleteChat,
 				setModalIsOpen,
 				modalIsOpen,
