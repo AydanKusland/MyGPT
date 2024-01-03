@@ -5,6 +5,7 @@
 	--primary-background: #343541;
 	--secondary-background: #202123;
 	--tertiary-background: rgb(80, 40, 40);
+	--input-background: rgba(255, 255, 255, 0.284);
 
 	--max-width: 100rem;
 }

@@ -56,6 +56,7 @@ export const ContextProvider = ({ children }) => {
 				...chats.filter(item => item.id !== updatedChat.id)
 			]
 			setChats(newChats)
+			window.scrollTo({ bottom: 0 })
 
 			// Update local storage
 			localStorage.setItem('chats', JSON.stringify(newChats))

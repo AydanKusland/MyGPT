@@ -21,13 +21,13 @@ const Wrapper = styled.form`
 		width: 98%;
 	}
 	input {
-		background-color: rgba(255, 255, 255, 0.284);
+		background-color: var(--input-background);
 		border-top-left-radius: 7px;
 		border-bottom-left-radius: 7px;
 		border: none;
 		width: 100%;
 		font-size: 2rem;
-		padding: 1rem;
+		padding-left: 1rem;
 		&:focus {
 			outline: none;
 		}
@@ -35,11 +35,14 @@ const Wrapper = styled.form`
 	button {
 		border-top-right-radius: 7px;
 		border-bottom-right-radius: 7px;
-		font-size: 4rem;
+		font-size: 3.3rem;
 		color: #b4c556;
-		background-color: rgba(255, 255, 255, 0.284);
+		background-color: var(--input-background);
 		border: none;
 		cursor: pointer;
+		@media (min-width: 768px) {
+			font-size: 4rem;
+		}
 	}
 `
 
