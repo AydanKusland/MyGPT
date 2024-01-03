@@ -27,6 +27,7 @@ export const ContextProvider = ({ children }) => {
 	let controller
 	const handleSubmit = async e => {
 		e.preventDefault()
+		const bottom = document.getElementById('lastItem')
 		setIsLoading(true)
 
 		// Making new message array
@@ -57,7 +58,7 @@ export const ContextProvider = ({ children }) => {
 			]
 			setChats(newChats)
 
-			document.getElementById('lastItem').scrollIntoView({ behavior: 'smooth' })
+			bottom.scrollIntoView({ behavior: 'smooth' })
 
 			// Update local storage
 			localStorage.setItem('chats', JSON.stringify(newChats))
