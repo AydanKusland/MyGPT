@@ -13,5 +13,5 @@ export default function App() {
 
 const Wrapper = styled.main`
 	display: flex;
-	height: 100vh;
+	height: 100svh;
 `

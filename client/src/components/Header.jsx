@@ -14,7 +14,7 @@ const Header = () => {
 					className='modal-open-icon'
 					onClick={() => setModalIsOpen(true)}
 				/>
-				<h3>MyGPT</h3>
+				<h4>MyGPT</h4>
 				<div id='smallScreenOpenChatButton'>
 					<NewChatButton />
 				</div>
@@ -38,13 +38,9 @@ const Wrapper = styled.div`
 			font-size: 5rem;
 		}
 	}
-	h3 {
-		margin: 0 auto;
-	}
-
 	.modal-open-icon {
 		color: white;
-		font-size: 3.5rem;
+		font-size: 3rem;
 		cursor: pointer;
 		border: none;
 		background-color: var(--primary-background);
@@ -54,14 +50,18 @@ const Wrapper = styled.div`
 			display: none;
 		}
 	}
+	h4 {
+		margin: 0 auto;
+	}
 	#smallScreenOpenChatButton {
 		display: grid;
 		button {
-			font-size: 1.5rem;
+			font-size: 1.4rem;
 			width: 6rem;
 			padding: 1rem;
 			text-align: center;
-			font-weight: bold;
+			font-weight: 600;
+			border: 1px solid var(--secondary-background);
 		}
 		@media (min-width: 768px) {
 			display: none;
