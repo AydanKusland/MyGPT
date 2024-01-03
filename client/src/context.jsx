@@ -57,7 +57,7 @@ export const ContextProvider = ({ children }) => {
 			]
 			setChats(newChats)
 
-			scrollIntoView(document.getElementById('lastItem'))
+			document.getElementById('lastItem').scrollIntoView({ behavior: 'smooth' })
 
 			// Update local storage
 			localStorage.setItem('chats', JSON.stringify(newChats))
