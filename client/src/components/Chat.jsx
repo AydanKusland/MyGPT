@@ -21,6 +21,7 @@ export default function Chat() {
 					</div>
 				</div>
 			))}
+			<p id='lastItem'></p>
 		</Wrapper>
 	)
 }
