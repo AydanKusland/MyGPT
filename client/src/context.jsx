@@ -32,15 +32,13 @@ export const ContextProvider = ({ children }) => {
 		// Making new message array
 		const messages = [...currentChat.messages, { role: 'user', content: query }]
 
-		controller = new AbortController()
 		try {
 			// Sending query to server
 			const {
 				data: { responseMessage, id }
 			} = await axios.post('/completions', {
 				model: gptVersion,
-				messages,
-				signal: controller.signal()
+				messages
 			})
 
 			// Construct and update chat
@@ -77,7 +75,6 @@ export const ContextProvider = ({ children }) => {
 	}
 
 	const openChosenChat = id => {
-		controller.abort()
 		setCurrentChat(chats.find(item => item.id === id))
 		setIsLoading(false)
 		setModalIsOpen(false)
