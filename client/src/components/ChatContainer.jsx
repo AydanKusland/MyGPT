@@ -8,8 +8,8 @@ export default function ChatContainer() {
 	return (
 		<Wrapper>
 			<Header />
-			{isLoading ? <Loading /> : <Chat />}
-			<div className='textField'>
+			<Chat />
+			<div className='inputField'>
 				<Textfield />
 				<VersionSelector />
 			</div>
@@ -25,7 +25,7 @@ const Wrapper = styled.main`
 	flex: 5 20rem;
 	max-width: var(--max-width);
 	margin: 0 auto;
-	.textField {
+	.inputField {
 		width: 100%;
 		display: flex;
 		flex-direction: column;

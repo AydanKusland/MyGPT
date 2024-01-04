@@ -1,12 +1,17 @@
-import { createContext, useContext, useState, useRef } from 'react'
+import { createContext, useContext, useState } from 'react'
 import axios from 'axios'
-import { clearedChat, URL, loadFromCookies } from './utils'
+import {
+	clearedChat,
+	URL,
+	loadFromLocalStorage,
+	updateLocalStorage
+} from './utils'
 
 const GlobalContext = createContext()
 
 export const ContextProvider = ({ children }) => {
 	// all chats
-	const [chats, setChats] = useState(loadFromCookies)
+	const [chats, setChats] = useState(loadFromLocalStorage)
 	// current chat query
 	const [query, setQuery] = useState('')
 	// current chat
@@ -31,7 +36,6 @@ export const ContextProvider = ({ children }) => {
 			const {
 				data: { responseMessage, id }
 			} = await axios.post(URL, {
-				// } = await axios.post('http://localhost:8000/completions', {
 				model: gptVersion,
 				messages
 			})
@@ -53,7 +57,7 @@ export const ContextProvider = ({ children }) => {
 			setChats(newChats)
 
 			// Update local storage
-			localStorage.setItem('chats', JSON.stringify(newChats))
+			updateLocalStorage(newChats)
 			setQuery('')
 		} catch (error) {
 			console.log(error)
@@ -65,7 +69,7 @@ export const ContextProvider = ({ children }) => {
 	const deleteChat = id => {
 		const newChats = chats.filter(item => item.id !== id)
 		setChats(newChats)
-		localStorage.setItem('chats', JSON.stringify(newChats))
+		updateLocalStorage(newChats)
 	}
 
 	const openChosenChat = id => {

@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import userImg from '../user.png'
 import assistantImg from '../assistant.png'
 import { useEffect, useRef } from 'react'
+import Loading from './Loading'
 
 export default function Chat() {
-	const { currentChat } = useGlobalContext()
+	const { currentChat, isLoading } = useGlobalContext()
 	const lastItem = useRef(null)
 	useEffect(() => {
 		lastItem.current.scrollIntoView()
@@ -27,7 +28,9 @@ export default function Chat() {
 					</div>
 				</div>
 			))}
-			<p id='lastItem' ref={lastItem}></p>
+			<p id='lastItem' ref={lastItem}>
+				{isLoading && <Loading />}
+			</p>
 		</Wrapper>
 	)
 }
@@ -35,18 +38,16 @@ export default function Chat() {
 const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	max-height: 83vh;
-	margin-bottom: 1rem;
+	max-height: 82vh;
 	font-size: 1.8rem;
 	overflow-y: scroll;
 	line-height: 1.5;
 	gap: 1rem;
 	max-width: var(--max-width);
 	@media (min-width: 768px) {
-		padding: 1rem;
+		padding: 0rem 1rem;
 	}
 	@media (min-width: 1024px) {
-		margin-bottom: 2.5rem;
 		line-height: 2;
 	}
 	.wholeMessage {
@@ -54,16 +55,22 @@ const Wrapper = styled.div`
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		padding: 1rem;
+		padding: 0.8rem;
 		border-radius: 7px;
+		span {
+			margin-right: 1.4rem;
+			font-size: 2rem;
+		}
 	}
 	img {
-		width: 3.5rem;
+		width: 3.6rem;
 		display: inline;
 	}
-	span {
-		margin-left: 0.3rem;
-		margin-right: 1.5rem;
-		font-size: 2.3rem;
+
+	#lastItem {
+		min-height: 4rem;
+		width: 4rem;
+		height: 4rem;
+		margin: 0rem auto;
 	}
 `

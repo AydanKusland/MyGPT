@@ -36,7 +36,7 @@ const Wrapper = styled.form`
 		border-top-right-radius: 7px;
 		border-bottom-right-radius: 7px;
 		font-size: 3.3rem;
-		color: #b4c556;
+		color: var(--input-arrow-color);
 		background-color: var(--input-background);
 		border: none;
 		cursor: pointer;

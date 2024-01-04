@@ -6,13 +6,14 @@ to{
 }
 `
 
-const Loading = styled.div`
-	width: 32rem;
-	height: 3rem;
+const Loading = styled.span`
+	display: inline-block;
+	width: 70%;
+	height: 70%;
 	border-radius: 50%;
-	border: 5px solid var(--primary-text);
+	border: 4px solid var(--input-arrow-color);
 	border-top-color: var(--secondary-background);
-	animation: ${spinner} 1s linear infinite;
+	animation: ${spinner} 0.7s linear infinite;
 `
 
 export default Loading
