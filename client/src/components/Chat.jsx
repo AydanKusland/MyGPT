@@ -1,8 +1,8 @@
 import { useGlobalContext } from '../context'
+import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import userImg from '../user.png'
 import assistantImg from '../assistant.png'
-import { useEffect, useRef } from 'react'
 import Loading from './Loading'
 
 export default function Chat() {

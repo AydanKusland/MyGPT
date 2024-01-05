@@ -4,7 +4,8 @@ import {
 	clearedChat,
 	URL,
 	loadFromLocalStorage,
-	updateLocalStorage
+	updateLocalStorage,
+	placeholder
 } from './utils'
 
 const GlobalContext = createContext()
@@ -13,11 +14,12 @@ export const ContextProvider = ({ children }) => {
 	// all chats
 	const [chats, setChats] = useState(loadFromLocalStorage)
 	// current chat query
-	const [query, setQuery] = useState('')
+	const [query, setQuery] = useState(placeholder)
 	// current chat
 	const [currentChat, setCurrentChat] = useState(clearedChat)
 
 	const [isLoading, setIsLoading] = useState(false)
+	const [errorMessage, setErrorMessage] = useState('')
 	const [modalIsOpen, setModalIsOpen] = useState(false)
 	// const lastItem = useRef(null)
 
@@ -26,6 +28,7 @@ export const ContextProvider = ({ children }) => {
 
 	const handleSubmit = async e => {
 		e.preventDefault()
+		setErrorMessage('')
 		setIsLoading(true)
 
 		// Making new message array
@@ -60,7 +63,8 @@ export const ContextProvider = ({ children }) => {
 			updateLocalStorage(newChats)
 			setQuery('')
 		} catch (error) {
-			console.log(error)
+			if (error.response?.data) setErrorMessage(error.response.data)
+			else console.log(error)
 		}
 
 		setIsLoading(false)
@@ -74,12 +78,14 @@ export const ContextProvider = ({ children }) => {
 
 	const openChosenChat = id => {
 		setCurrentChat(chats.find(item => item.id === id))
-		setIsLoading(false)
+		setErrorMessage('')
 		setModalIsOpen(false)
+		setIsLoading(false)
 	}
 
 	const openNewChat = () => {
 		setCurrentChat(clearedChat)
+		setErrorMessage('')
 		setQuery('')
 		setIsLoading(false)
 	}
@@ -98,7 +104,8 @@ export const ContextProvider = ({ children }) => {
 				setModalIsOpen,
 				modalIsOpen,
 				openChosenChat,
-				openNewChat
+				openNewChat,
+				errorMessage
 			}}
 		>
 			{children}

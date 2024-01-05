@@ -1,12 +1,14 @@
+const DEV = import.meta.env.DEV
+
 export const clearedChat = {
 	id: '',
 	title: '',
 	messages: []
 }
 
-export const URL = import.meta.env.DEV
-	? 'http://localhost:8000/completions'
-	: '/completions'
+export const URL = DEV ? 'http://localhost:8000/completions' : '/completions'
+
+export const placeholder = DEV ? '4 examples with ' : ''
 
 export const loadFromLocalStorage = () => {
 	const chatsInStorage = localStorage.getItem('chats')

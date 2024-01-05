@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 import { useGlobalContext } from '../context'
-import { Loading, Chat, VersionSelector, Header } from './index'
+import { Chat, VersionSelector, Header, Error } from './index'
 import Textfield from './Textfield'
 
 export default function ChatContainer() {
-	const { isLoading } = useGlobalContext()
+	const { errorMessage } = useGlobalContext()
 	return (
 		<Wrapper>
 			<Header />
-			<Chat />
+			{errorMessage ? <Error errorMessage={errorMessage} /> : <Chat />}
 			<div className='inputField'>
 				<Textfield />
 				<VersionSelector />
