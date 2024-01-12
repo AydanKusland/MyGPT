@@ -5,7 +5,11 @@ const Textfield = () => {
 	const { setQuery, query, handleSubmit } = useGlobalContext()
 	return (
 		<Wrapper onSubmit={handleSubmit}>
-			<input value={query} required onChange={e => setQuery(e.target.value)} />
+			<textarea
+				value={query}
+				required
+				onChange={e => setQuery(e.target.value)}
+			/>
 			<button type='submit'>{'\u27a2'}</button>
 		</Wrapper>
 	)
@@ -20,7 +24,7 @@ const Wrapper = styled.form`
 	@media (min-width: 1024px) {
 		width: 98%;
 	}
-	input {
+	textarea {
 		background-color: var(--input-background);
 		border-top-left-radius: 7px;
 		border-bottom-left-radius: 7px;
