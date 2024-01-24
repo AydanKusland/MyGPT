@@ -29,11 +29,16 @@ const Wrapper = styled.form`
 		border-top-left-radius: 7px;
 		border-bottom-left-radius: 7px;
 		border: none;
-		width: 100%;
+		min-width: calc(100% - 4.2rem);
+		min-height: 5.5rem;
 		font-size: 2rem;
-		padding-left: 1rem;
+		padding-left: 1.5rem;
+		padding-top: 1.5rem;
 		&:focus {
 			outline: none;
+		}
+		@media (min-width: 768px) {
+			min-width: calc(100% - 5rem);
 		}
 	}
 	button {
