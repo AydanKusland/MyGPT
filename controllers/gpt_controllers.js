@@ -6,8 +6,8 @@ export const gptRequest = async (req, res) => {
 		console.time()
 		const { data } = await customFetch.post('', {
 			model,
-			messages
-			// max_tokens: 4097
+			messages,
+			max_tokens: 4000
 			// temperature: 1
 		})
 		const responseMessage = data.choices[0].message

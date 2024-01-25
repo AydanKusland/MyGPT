@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import userImg from '../user.png'
 import assistantImg from '../assistant.png'
 import Loading from './Loading'
+import ReactMarkdown from 'react-markdown'
 
 export default function Chat() {
 	const { currentChat, isLoading } = useGlobalContext()
@@ -21,11 +22,7 @@ export default function Chat() {
 						src={message.role === 'user' ? userImg : assistantImg}
 					/>
 					<span>:</span>
-					<div>
-						{message.content.split('\n').map((item, i) => (
-							<p key={i}>{item}</p>
-						))}
-					</div>
+					<div>{<ReactMarkdown>{message.content}</ReactMarkdown>}</div>
 				</div>
 			))}
 			<p id='lastItem' ref={lastItem}>
